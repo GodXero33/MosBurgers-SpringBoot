@@ -1,0 +1,13 @@
+#home-section .container {
+	& {
+		--font-local-size: clamp(1rem, 5vw, 1.5rem);
+	}
+
+	& h1 {
+		padding: calc(var(--font-local-size) * 0.2);
+		font-size: calc(var(--font-local-size) * 2);
+		text-align: center;
+		letter-spacing: calc(var(--font-local-size) * 0.15);
+		color: var(--text-color-v1);
+	}
+}

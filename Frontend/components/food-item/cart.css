@@ -1,0 +1,86 @@
+#cart-holder {
+	& .items {
+		--loc-font-size: clamp(0.8rem, 5vw, 1rem);
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: calc(var(--loc-font-size) * 7 + 4rem);
+		display: flex;
+		gap: calc(var(--loc-font-size) * 0.5);
+		overflow-y: hidden;
+		overflow-x: auto;
+		scrollbar-width: thin;
+		scrollbar-color: var(--scrollbar-color) transparent;
+	}
+
+	& .items .item {
+		position: relative;
+		padding: 0.4rem;
+		top: 0;
+		left: 0;
+		height: 100%;
+		aspect-ratio: 7 / 5;
+		background-color: var(--place-order-item-color);
+		flex-shrink: 0;
+		display: grid;
+		align-content: center;
+		justify-content: center;
+		grid-template-columns: repeat(2, 50%);
+		gap: 0.4rem;
+		border-radius: 0.5rem;
+		border: 0.2rem solid hsl(from var(--background-color) h s calc(l + 20));
+	}
+
+	& .items .item > div {
+		position: relative;
+		top: 0;
+		left: 0;
+		color: var(--text-color-v1);
+		font-size: var(--loc-font-size);
+	}
+
+	& .items .item > div:nth-child(2n) {
+		padding-left: 0.2rem;
+		text-align: left;
+	}
+
+	& .items .item > div:nth-child(2n + 1) {
+		padding-right: 0.2rem;
+		font-weight: 900;
+		text-align: right;
+	}
+
+	& .details {
+		position: relative;
+		margin-top: 2rem;
+		padding: 0.4rem;
+		top: 0;
+		left: 0;
+		height: 100%;
+		height: fit-content;
+		display: grid;
+		align-content: center;
+		justify-content: center;
+		grid-template-columns: repeat(2, 50%);
+	}
+
+	& .details > div {
+		position: relative;
+		top: 0;
+		left: 0;
+		color: var(--text-color-v1);
+		font-size: var(--loc-font-size);
+	}
+
+	& .details > div:nth-child(2n) {
+		padding-left: 0.5rem;
+		text-align: left;
+	}
+
+	& .details > div:nth-child(2n + 1) {
+		padding-right: 0.2rem;
+		font-weight: 900;
+		text-align: right;
+	}
+}

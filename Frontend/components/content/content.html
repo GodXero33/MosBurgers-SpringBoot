@@ -1,0 +1,119 @@
+<nav id="nav-panel">
+	<div></div>
+	<div>
+		<div class="logo centered-img">
+			<div class="backdrop"></div>
+			<input type="checkbox">
+		</div>
+	</div>
+	<div>
+		<div class="btn" title="home">
+			<div class="centered-img"></div>
+			<div>
+				<p>HOME</p>
+			</div>
+			<input type="radio" name="nav-panel-btn">
+		</div>
+		<div class="btn" title="foods">
+			<div class="centered-img"></div>
+			<div>
+				<p>FOODS</p>
+			</div>
+			<input type="radio" name="nav-panel-btn">
+		</div>
+		<div class="btn" title="add-item">
+			<div class="centered-img"></div>
+			<div>
+				<p>ADD ITEM</p>
+			</div>
+			<input type="radio" name="nav-panel-btn">
+		</div>
+		<div class="btn" title="add-item">
+			<div class="centered-img"></div>
+			<div>
+				<p>REPORTS</p>
+			</div>
+			<input type="radio" name="nav-panel-btn">
+		</div>
+		<div class="btn" title="setting">
+			<div class="centered-img"></div>
+			<div>
+				<p>SETTING</p>
+			</div>
+			<input type="radio" name="nav-panel-btn">
+		</div>
+	</div>
+</nav>
+<div id="content-container">
+	<section id="home-section" class="hide">
+		<div class="container">
+			<h1>MOS BURGERS</h1>
+		</div>
+	</section>
+	<section id="place-order-section" class="hide">
+		<div class="container">
+			<div class="header">
+				<div>
+					<h1>Foods</h1>
+					<div>
+						<input type="text" id="place-order-food-search" placeholder="search" title="search">
+						<select id="place-order-food-filter" title="filter">
+							<option value="All">All</option>
+							<option value="Burgers">Burgers</option>
+							<option value="Submarines">Submarines</option>
+							<option value="Beverages">Beverages</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="items">
+				<div>
+					<div id="place-order-items-holder"></div>
+				</div>
+			</div>
+		</div>
+		<div id="item-place-card">
+			<div class="backdrop"></div>
+			<div class="card-cont">
+				<div id="item-place-card-holder"></div>
+				<div class="input">
+					<input type="number" id="item-place-count-input" min="0" value="0" title="quantity">
+					<button class="centered-img" title="add" id="item-place-place-btn"></button>
+				</div>
+				<div id="item-place-card-close-btn" class="centered-img"></div>
+			</div>
+		</div>
+		<div id="open-cart-btn" class="centered-img" title="cart"></div>
+		<div id="cart-container">
+			<div class="wrapper">
+				<div id="cart-holder"></div>
+				<div id="cart-place-btn" class="centered-img" title="place order"></div>
+				<div id="cart-close-btn" class="centered-img" title="close"></div>
+			</div>
+		</div>
+		<div id="customer-select-container">
+			<div class="wrapper">
+				<div id="customer-select-input-container">
+					<div class="box">
+						<div>Customer ID</div>
+						<input type="number" min="1" placeholder="ID" autocomplete="no" class="customer-select-input">
+						<div>Name</div>
+						<input type="text" placeholder="name" autocomplete="no" class="customer-select-input" disabled>
+						<div>Phone</div>
+						<input type="tel" placeholder="phone" autocomplete="no" class="customer-select-input" disabled>
+						<div>E-mail</div>
+						<input type="email" placeholder="e-mail" autocomplete="no" class="customer-select-input" disabled>
+						<div>Address</div>
+						<input type="text" placeholder="address" autocomplete="no" class="customer-select-input" disabled>
+						<button id="customer-select-action-btn" class=""></button>
+					</div>
+				</div>
+				<div id="customer-select-close-btn" class="centered-img" title="close"></div>
+			</div>
+		</div>
+	</section>
+	<section class="hide"></section>
+	<section class="hide"></section>
+	<section class="hide"></section>
+</div>

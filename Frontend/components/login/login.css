@@ -1,0 +1,114 @@
+#login-container {
+	& {
+		position: absolute;
+		margin: auto;
+		padding: 0.7rem;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: min(calc(100% - 1rem), 500px);
+		height: fit-content;
+		max-height: calc(100% - 1rem);
+		background-color: #ffffff;
+		border-radius: 8px;
+		box-shadow: 0 0 5px rgba(186, 182, 182, 0.7);
+		overflow-x: hidden;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: #000000 transparent;
+		container: main / inline-size;
+	}
+
+	& h1 {
+		--loc-font-size: clamp(1.2rem, 10vw, 1.8rem);
+		font-size: var(--loc-font-size);
+		text-align: center;
+		letter-spacing: calc(var(--loc-font-size) * 0.12);
+		color: #454545;
+	}
+
+	& > div {
+		position: relative;
+		padding: 0.7rem;
+		padding-top: 2rem;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: fit-content;
+		display: grid;
+		grid-template-columns: auto auto;
+		gap: 0.5rem;
+	}
+
+	& > div div, & > div input, & > div button {
+		--loc-font-size: clamp(0.8rem, 10vw, 1.2rem);
+		margin-block: 0.5rem;
+		padding: 0.2rem;
+		font-size: var(--loc-font-size);
+	}
+
+	& > div div {
+		text-align: right;
+	}
+
+	& > div input {
+		outline: none;
+		border: none;
+		border-bottom: 2px solid #000000;
+	}
+
+	& > div input:focus {
+		border-color: #3eff3e;
+	}
+
+	& > div input:invalid {
+		border-color: red;
+	}
+
+	& > div button {
+		position: relative;
+		margin-left: auto;
+		padding-inline: 1rem;
+		right: 0;
+		grid-column: 2;
+		background-color: #46d4ff;
+		border: none;
+		outline: none;
+		color: #fff;
+		border-radius: 0.2rem;
+		cursor: pointer;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+
+	& > div button:disabled {
+		background-color: #a6e5f8;
+		cursor: default;
+	}
+
+	@container main (max-width: 400px) {
+		& > div {
+			grid-template-columns: auto;
+		}
+
+		& > div div:nth-child(3) {
+			margin-top: 1rem;
+		}
+
+		& > div div, & > div input {
+			margin: 0;
+		}
+
+		& > div div {
+			text-align: center;
+		}
+
+		& > div input {
+			width: 100%;
+		}
+
+		& > div button {
+			grid-column: 1;
+		}
+	}
+}

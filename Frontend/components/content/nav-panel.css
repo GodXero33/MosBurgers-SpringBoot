@@ -1,0 +1,171 @@
+#nav-panel {
+	& {
+		--font-local-size: clamp(calc(var(--nav-font-adjest) * 1), 5vw, calc(var(--nav-font-adjest) * 1.5));
+		isolation: isolate;
+		position: absolute;
+		padding-block: calc(var(--font-local-size) * 1.5);
+		top: 0;
+		left: 0;
+		width: calc(var(--font-local-size) * 1.5);
+		height: 100svh;
+		transition: width 0.2s ease;
+		z-index: 200;
+	}
+
+	& > div, & > div:last-child .btn {
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+
+	& > div:nth-child(1), & > div:nth-child(2) {
+		position: absolute;
+	}
+
+	& > div:nth-child(1) {
+		height: 100%;
+		background-color: var(--nav-bar-color);
+	}
+
+	& > div:nth-child(2), & > div:last-child .btn {
+		height: calc(var(--font-local-size) * 1.5);
+	}
+
+	& > div:last-child {
+		position: relative;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: calc(var(--font-local-size) * 0.25);
+	}
+
+	& > div:nth-child(2) .logo {
+		position: relative;
+		margin-left: auto;
+		top: 0;
+		right: 0;
+		width: calc(var(--font-local-size) * 1.5);
+		height: calc(var(--font-local-size) * 1.5);
+		background-image: url(res/img/logo.png);
+		background-size: 80% 80%;
+	}
+
+	& > div:nth-child(2) .logo input {
+		-webkit-appearance: none;
+		appearance: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+
+	& > div:nth-child(2) .logo .backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100svh;
+		background-color: var(--fade-background-v1);
+		opacity: 0;
+		pointer-events: none;
+		z-index: -1;
+		transition: opacity 0.2s linear;
+	}
+
+	& > div:last-child .btn {
+		position: relative;
+		padding: calc(var(--font-local-size) * 0.15);
+		background-color: var(--nav-bar-btns-color);
+		display: flex;
+		gap: calc(var(--font-local-size) * 0.15);
+		overflow: hidden;
+		transition: background-color 0.2s linear;
+	}
+
+	& > div:last-child .btn input {
+		-webkit-appearance: none;
+		appearance: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+
+	& > div:last-child .btn:has( input:checked) {
+		background-color: var(--background-color);
+	}
+
+	& > div:last-child .btn > div {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: calc(var(--font-local-size) * 1.2);
+		height: 100%;
+		flex-shrink: 0;
+	}
+
+	& > div:last-child .btn > div:first-child {
+		background-size: 90% 90%;
+	}
+
+	& > div:last-child .btn:nth-child(1) > div:first-child {
+		background-image: url(res/img/home.png);
+	}
+
+	& > div:last-child .btn:nth-child(2) > div:first-child {
+		background-image: url(res/img/place-order.png);
+	}
+
+	& > div:last-child .btn:nth-child(3) > div:first-child {
+		background-image: url(res/img/warehouse.png);
+	}
+
+	& > div:last-child .btn:nth-child(4) > div:first-child {
+		background-image: url(res/img/report.png);
+	}
+
+	& > div:last-child .btn:nth-child(5) > div:first-child {
+		background-image: url(res/img/gear.png);
+	}
+
+	& > div:last-child .btn > div:nth-child(2) {
+		padding: calc(var(--font-local-size) * 0.2);
+		flex-grow: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		transform: scaleX(0);
+		opacity: 0;
+		transition: transform 0.2s linear, opacity 0.2s linear;
+		background-color: var(--fade-background-v1);
+	}
+
+	& > div:last-child .btn > div:nth-child(2) p {
+		font-size: calc(var(--font-local-size) * 0.6);
+		letter-spacing: calc(var(--font-local-size) * 0.15);
+		text-align: center;
+		color: var(--text-color-v1);
+	}
+
+	&:has( > div:nth-child(2) .logo input:checked) {
+		& {
+			width: min(100%, calc(var(--font-local-size) * 9));
+		}
+
+		& > div:last-child .btn > div:nth-child(2) {
+			transform: scaleX(1);
+			opacity: 1;
+		}
+
+		& > div:nth-child(2) .logo .backdrop {
+			opacity: 1;
+			pointer-events: all;
+		}
+	}
+}

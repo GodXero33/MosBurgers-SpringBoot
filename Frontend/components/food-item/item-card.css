@@ -1,0 +1,112 @@
+#place-order-section .container #place-order-items-holder {
+	& .item-card {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: calc(16.66% - 2rem);
+		aspect-ratio: 5 / 7;
+		flex-shrink: 0;
+		background-color: var(--place-order-item-color);
+		overflow: hidden;
+		border-radius: 0.5rem;
+		cursor: pointer;
+	}
+
+	& .item-card.active {
+		filter: grayscale(100%);
+		transform: scale(0.9);
+	}
+
+	& .item-card .img-cont {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 60%;
+	}
+
+	& .item-card .img-cont img {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-position: center center;
+		object-fit: cover;
+		pointer-events: none;
+	}
+
+	& .item-card .card-content {
+		position: absolute;
+		padding: 0.2rem;
+		top: 60%;
+		left: 0;
+		width: 100%;
+		height: 40%;
+		display: flex;
+		align-items: flex-end;
+		background-color: hsla(from var(--label-bg) h s l / 100%);
+	}
+
+	& .item-card .card-content > div {
+		position: relative;
+		padding: 0.5rem;
+		top: 0;
+		left: 0;
+		height: 100%;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+
+	& .item-card .card-content > div p {
+		padding: 0.1rem;
+		width: 100%;
+		font-size: clamp(0.8rem, 0.8rem + 5vw, 1rem);
+		color: var(--text-color-v1);
+		font-weight: 900;
+	}
+
+	& .name-cont {
+		position: absolute;
+		padding: 0.5rem;
+		top: 0;
+		left: 0;
+		width: 100%;
+		font-size: clamp(0.8rem, 0.8rem + 5vw, 1rem);
+		color: var(--text-color-v1);
+		background-color: hsla(from var(--label-bg) h s l / 80%);
+		font-weight: 900;
+	}
+
+	@container place-order-items-holder (width <= 360px) {
+		.item-card {
+			width: 100%;
+		}
+	}
+
+	@container place-order-items-holder (width > 360px) and (width <= 640px) {
+		.item-card {
+			width: calc(50% - 0.5rem);
+		}
+	}
+
+	@container place-order-items-holder (width > 640px) and (width <= 900px) {
+		.item-card {
+			width: calc(33.33% - 1rem);
+		}
+	}
+
+	@container place-order-items-holder (width > 900px) and (width <= 1200px) {
+		.item-card {
+			width: calc(25% - 1.5rem);
+		}
+	}
+
+	@container place-order-items-holder (width > 1200px) and (width <= 1500px) {
+		.item-card {
+			width: calc(20% - 2rem);
+		}
+	}
+}

@@ -1,0 +1,52 @@
+#item-place-card-holder {
+	& .img-cont {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 50%;
+	}
+
+	& .img-cont img {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-position: center center;
+		object-fit: cover;
+	}
+
+	& .desc-cont {
+		position: relative;
+		padding-inline: 0.5rem;
+		padding-block: 1rem;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 50%;
+		display: grid;
+		align-content: center;
+		justify-content: center;
+		grid-template-columns: repeat(2, auto);
+		gap: 0.4rem;
+	}
+
+	& .desc-cont div {
+		position: relative;
+		top: 0;
+		font-size: clamp(0.7rem, 5vw, 1rem);
+		color: var(--text-color-v1);
+	}
+
+	& .desc-cont div:nth-child(2n) {
+		text-align: left;
+		border-left: 2px solid var(--text-color-v1);
+		padding-left: 0.2rem;
+	}
+	
+	& .desc-cont div:nth-child(2n + 1) {
+		font-weight: 900;
+		text-align: right;
+	}
+}

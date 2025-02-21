@@ -1,0 +1,43 @@
+html {
+	font-size: var(--font-size);
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	height: 100svh;
+}
+
+body {
+	background-color: #000000;
+}
+
+#main-container {
+	position: absolute;
+	margin-inline: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	max-width: 1920px;
+	background-color: var(--background-color);
+	overflow: hidden;
+}
+
+#loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	height: 100svh;
+	background-color: #000000;
+	transition: opacity 0.2s linear;
+	z-index: 999;
+}
+
+#loader.hide {
+	opacity: 0;
+	pointer-events: none;
+}
