@@ -18,6 +18,5 @@ A full-stack POS system for a burger shop.
 3. If you need to use port **8080** for the frontend, update `application.yml` to specify a different available port.  
 
 ## 📖 Guide  
-- Inside the **Project** folder, you'll find:  
-  - **ERD & Logical Schema (PDF format)**  
-  - **MySQL database setup SQL file**  
+- [ERD & Logical Schema (PDF)](project/MOS_Burgers_DB.pdf)  
+- [MySQL Database Setup (SQL)](project/MOS_Burgers_DB_Create.sql)  
