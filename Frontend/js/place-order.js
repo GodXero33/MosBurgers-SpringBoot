@@ -39,32 +39,32 @@
 		return new Promise(async (res, rej) => {
 			isOrderPlacing = true;
 	
-			const customer_id = cart.customer;
-			const admin_id = SHOP_WINDOW['admin'].admin_id;
+			const customerId = cart.customer;
+			const adminId = SHOP_WINDOW['admin'].id;
 			const today = new Date();
-			const place_date = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-			const total_amount = cart.total;
+			const placeDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+			const totalAmount = cart.total;
 			const discount = cart.discount;
-			const final_amount = cart.total;
+			const finalAmount = cart.total;
 			
 			const order = {
-				customer_id,
-				admin_id,
-				place_date,
-				total_amount,
+				customerId,
+				adminId,
+				placeDate,
+				totalAmount,
 				discount,
-				final_amount,
+				finalAmount,
 				items: cart.items.map(cartItem => {
-					const item_id = cartItem.item.item_id;
+					const foodItemId = cartItem.item.id;
 					const quantity = cartItem.count;
-					const total_price = cartItem.total;
-					const price_per_unit = cartItem.item.price;
+					const totalPrice = cartItem.total;
+					const pricePerUnit = cartItem.item.price;
 	
 					return {
-						item_id,
+						foodItemId,
 						quantity,
-						total_price,
-						price_per_unit
+						totalPrice,
+						pricePerUnit
 					};
 				})
 			};
@@ -154,7 +154,7 @@
 	}
 
 	function addPlaceItemToCart () {
-		const item = items.find(item => item['item_id'] == currentPlaceItemIndex);
+		const item = items.find(item => item['id'] == currentPlaceItemIndex);
 
 		if (!item) return;
 
@@ -213,11 +213,11 @@
 
 	function showItemPlaceCard () {
 		itemPlaceContainer.classList.add('show');
-		const item = items.find(item => item['item_id'] == currentPlaceItemIndex);
+		const item = items.find(item => item['id'] == currentPlaceItemIndex);
 
 		if (!item) return;
 
-		const existItem = cart.items.find(cartItem => cartItem.item['item_id'] == item['item_id']);
+		const existItem = cart.items.find(cartItem => cartItem.item['id'] == item['id']);
 
 		if (existItem) {
 			itemPlaceCountInput.value = existItem.count;
@@ -225,7 +225,7 @@
 	}
 
 	function updateItemPlaceCard () {
-		const item = items.find(item => item['item_id'] == currentPlaceItemIndex);
+		const item = items.find(item => item['id'] == currentPlaceItemIndex);
 
 		if (!item) return;
 
@@ -233,7 +233,7 @@
 		const price = item.price * count;
 		const discount = item.discount * count;
 		const total = price - discount;
-		const { name, category, code } = item;
+		const { name, category, id } = item;
 
 		const holderHTML = itemPlaceComponent
 			.replace(':NAME', name)
@@ -241,7 +241,7 @@
 			.replace(':PRICE', price.toFixed(2))
 			.replace(':DISCOUNT', discount.toFixed(2))
 			.replace(':TOTAL', total.toFixed(2))
-			.replace(':IMAGE', code);
+			.replace(':IMAGE', id);
 		
 		itemPlaceCardContainer.innerHTML = holderHTML;
 	}
@@ -252,8 +252,8 @@
 				.replace(':PRICE', item['price'])
 				.replace(':DISCOUNT', item['discount'])
 				.replace(':TITLE', item['name'])
-				.replace(':IMAGE', item['code'])
-				.replace(':INDEX', item['item_id']);
+				.replace(':IMAGE', item['id'])
+				.replace(':INDEX', item['id']);
 			const parser = new DOMParser();
 			const doc = parser.parseFromString(card, 'text/html');
 			const cardDOM = doc.querySelector('.item-card');
@@ -277,12 +277,12 @@
 	function checkCustomerIsAlreadyLogged (id) {
 		return new Promise(async (res, rej) => {
 			try {
-				const response = await fetch(`${SHOP_WINDOW['db_host']}/customers/${id}`);
+				const response = await fetch(`${SHOP_WINDOW['db_host']}/customers?id=${id}`);
 
 				if (!response.ok) throw new Error('Failed to fetch customer search.');
 
-				const customer = await response.json();
-				res(customer);
+				const data = await response.json();
+				res(data.customer);
 			} catch (error) {
 				console.error(error);
 				res(null);
@@ -303,8 +303,8 @@
 
 				if (!response.ok) throw new Error('Failed to fetch add new customer.');
 
-				const newCustomer = await response.json();
-				res(newCustomer);
+				const data = await response.json();
+				res(data.customer);
 			} catch (error) {
 				console.error(error);
 				res(null);
@@ -355,9 +355,9 @@
 			const newCustomer = await addNewCustomer(customer);
 			
 			if (newCustomer) {
-				customerSelectInputs[0].value = newCustomer['customer_id'];
-				cart.customer = newCustomer['customer_id'];
-				sendInfoAlert('New Customer ID is ' + newCustomer['customer_id']);
+				customerSelectInputs[0].value = newCustomer['id'];
+				cart.customer = newCustomer['id'];
+				sendInfoAlert('New Customer ID is ' + newCustomer['id']);
 
 				customerSelectInputs.forEach(input => input.disabled = true);
 
@@ -396,13 +396,13 @@
 
 		try {
 			const loggedCustomer = await checkCustomerIsAlreadyLogged(customerSelectInputs[0].value * 1);
-			
+
 			if (loggedCustomer) {
 				customerSelectInputs[1].value = loggedCustomer['name'];
 				customerSelectInputs[2].value = loggedCustomer['phone'];
 				customerSelectInputs[3].value = loggedCustomer['email'];
 				customerSelectInputs[4].value = loggedCustomer['address'];
-				cart.customer = loggedCustomer['customer_id'];
+				cart.customer = loggedCustomer['id'];
 				customerSelectActionBtn.classList.add('place');
 				customerSelectActionBtn.disabled = false;
 			} else {
@@ -426,7 +426,8 @@
 
 			if (!response.ok) throw new Error('Failed to fetch items data.');
 
-			items = await response.json();
+			const data = await response.json();
+			items = data.items;
 		} catch (error) {
 			console.error(error);
 		}

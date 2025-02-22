@@ -20,7 +20,7 @@
 		let user;
 
 		try {
-			const response = await fetch(`${SHOP_WINDOW.db_host}/admin/${userName}`);
+			const response = await fetch(`${SHOP_WINDOW.db_host}/admin?name=${userName}`);
 
 			if (!response.ok) throw new Error('Failed to fetch admins.');
 
@@ -47,7 +47,7 @@
 		}
 
 		try {
-			const response = await fetch(`${SHOP_WINDOW.db_host}/admin/${userName}/${password}`);
+			const response = await fetch(`${SHOP_WINDOW.db_host}/admin?name=${userName}&password=${password}`);
 
 			if (!response.ok) throw new Error('Failed to fetch admins.');
 
@@ -97,19 +97,19 @@
 	}
 
 	async function loginSuccess (user) {
+		user = user.admin;
 		releaseMemory();
 		document.title = `Mos Burger - ${user['name']}`;
 		SHOP_WINDOW['admin'] = user;
 		SHOP_WINDOW['loader'].classList.remove('hide');
 
 		try {
-			const userSettings = await loadUserSettings(user['admin_id']);
+			const userSettings = await loadUserSettings(user.id);
 			SHOP_WINDOW['user_style'] = userSettings.style;
 			SHOP_WINDOW['init_content'] = userSettings.initialPage;
 			updateLayoutStyles();
 
 			await loadDynamicSrcipt('js/content.js');
-			// console.log(userSettings);
 		} catch (error) {
 			console.error(error);
 		}

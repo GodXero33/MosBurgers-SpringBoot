@@ -1,5 +1,5 @@
 const SHOP_WINDOW = {
-	db_host: 'http://localhost:5500',
+	db_host: 'http://localhost:8080',
 	init_content: 2
 };
 const SHOP_TEST = {
